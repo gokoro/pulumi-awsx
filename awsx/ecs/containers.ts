@@ -97,13 +97,16 @@ function computeContainerDefinition(
 }
 
 export function getMappingInputs(
-  mappingInput: { containerPort?: number; hostPort?: number; protocol?: string },
+  mappingInput: { containerPort?: number; hostPort?: number; protocol?: string; appProtocol?: string; containerPortRange?: string; name?: string },
   tgPort: number | undefined,
 ): schema.TaskDefinitionPortMappingInputs {
   return {
     containerPort: mappingInput.containerPort ?? mappingInput.hostPort ?? tgPort,
     hostPort: mappingInput.hostPort ?? tgPort ?? mappingInput.containerPort,
     protocol: mappingInput.protocol,
+    appProtocol: mappingInput.appProtocol,
+    containerPortRange: mappingInput.containerPortRange,
+    name: mappingInput.name,
   };
 }
 
